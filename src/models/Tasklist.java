@@ -7,18 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tasklist")
+@NamedQueries({
+    @NamedQuery(
+        name = "getAllTasklists",
+        query = "SELECT m FROM Tasklist AS m ORDER BY m.id DESC"
+    )
+})
+@Table(name = "tasklists")
 public class Tasklist {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(name = "title", length = 255, nullable = false)
-    private String title;
 
     @Column(name = "content", length = 255, nullable = false)
     private String content;
@@ -32,7 +37,6 @@ public class Tasklist {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
@@ -44,7 +48,6 @@ public class Tasklist {
     public void setContent(String content) {
         this.content = content;
     }
-
     public Timestamp getCreated_at() {
         return created_at;
     }
