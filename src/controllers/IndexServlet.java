@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Tasklist;
+import models.Task;
 import utils.DBUtil;
 /**
  * Servlet implementation class IndexServlet
@@ -41,7 +41,7 @@ public class IndexServlet extends HttpServlet {
         } catch(NumberFormatException e) {}
 
         // 最大件数と開始位置を指定してメッセージを取得
-        List<Tasklist> tasklists = em.createNamedQuery("getAllTasklists", Tasklist.class)
+        List<Task> tasks = em.createNamedQuery("getAllTasklists", Task.class)
                                    .setFirstResult(15 * (page - 1))
                                    .setMaxResults(15)
                                    .getResultList();
@@ -52,7 +52,7 @@ public class IndexServlet extends HttpServlet {
 
         em.close();
 
-        request.setAttribute("tasklists", tasklists);
+        request.setAttribute("tasklists", tasks);
         request.setAttribute("tasklists_count", tasklists_count);     // 全件数
         request.setAttribute("page", page);                         // ページ数
 

@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.Tasklist;
+import models.Task;
 import models.validators.TasklistValidator;
 import utils.DBUtil;
 
@@ -38,7 +38,7 @@ public class CreateServlet extends HttpServlet {
             EntityManager em = DBUtil.createEntityManager();
             em.getTransaction().begin();
 
-            Tasklist t = new Tasklist();
+            Task t = new Task();
             String content = request.getParameter("content");
             t.setContent(content);
 

@@ -3,11 +3,11 @@ package models.validators;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.Tasklist;
+import models.Task;
 
 public class TasklistValidator {
     // バリデーションを実行する
-    public static List<String> validate(Tasklist t) {
+    public static List<String> validate(Task t) {
         List<String> errors = new ArrayList<String>();
 
         String content_error = validateContent(t.getContent());
